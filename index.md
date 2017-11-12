@@ -11,8 +11,6 @@
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw1.html">
 		hw1.html</a>
-	</tr>
-</table>
 
 
 

@@ -4,13 +4,13 @@
 <table border="1" width="100%">
 	<tr>
 		<td width="389">
-		<img border="0" src="hw2.gif" width="389" height="253"></td>
+		<img border="0" src="hw2.gif" width="389" height="300"></td>
 	</tr>
 	<tr>
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw1.html">
-		hw1.html</a></td>
+		hw1.html</a>
 	</tr>
 </table>
 

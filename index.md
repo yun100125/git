@@ -4,7 +4,7 @@
 <table border="1" width="100%">
 	<tr>
 		<td width="389">
-		<img border="0" src="figs/t0.gif" width="389" height="253"></td>
+		<img border="0" src="figs/t0.gif" width="370" height="253"></td>
 	</tr>
 	<tr>
 		<td width="389">

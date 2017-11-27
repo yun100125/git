@@ -5,12 +5,18 @@
 	<tr>
 		<td width="389">
 		<img border="0" src="hw1/hw1.gif" width="389" height="350"></td>
+		<td width="389">
+		<img border="0" src="hw1/hw1.gif" width="389" height="350"></td>
 	</tr>
 	<tr>
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw1/hw1.html">
 		hw1.html</a>
+		<td width="389">
+		<p align="center">
+		<a href="http://yun100125.github.io/git/hw2/hw2.html">
+		hw2.html</a>
 
 
 

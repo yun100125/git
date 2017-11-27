@@ -5,8 +5,8 @@
 	<tr>
 		<td width="389">
 		<img border="0" src="hw1/hw1.gif" width="389" height="350"></td>
-		<td width="590">
-		<img border="0" src="hw3/hw3.gif" width="550" height="300"></td>
+		<td width="490">
+		<img border="0" src="hw3/hw3.gif" width="490" height="300"></td>
 	</tr>
 	<tr>
 		<td width="389">

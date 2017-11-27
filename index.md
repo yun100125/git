@@ -15,8 +15,8 @@
 		hw1.html</a>
 		<td width="389">
 		<p align="center">
-		<a href="http://yun100125.github.io/git/hw2/hw2.html">
-		hw2.html</a>
+		<a href="http://yun100125.github.io/git/hw3/hw3.html">
+		hw3.html</a>
 
 
 

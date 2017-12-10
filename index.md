@@ -17,7 +17,19 @@
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw3/hw3.html">
 		hw3.html</a>
-
+</table>
+<table border="1" width="100%">
+	<tr>
+		<td width="389">
+		<img border="0" src="figs/t0.gif" width="389" height="350"></td>
+	</tr>
+	<tr>
+		<td width="389">
+		<p align="center">
+		<a href="http://yun100125.github.io/git/hw4/hw4.html">
+		hw4.html</a>
+	</tr>
+</table>
 
 
 

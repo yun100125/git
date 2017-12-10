@@ -29,8 +29,6 @@
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw4/hw4.html">
-		hw4.html</a></td>
-	</tr>
-</table>
+		hw4.html</a>
 
 

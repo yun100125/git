@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	body {
+		overflow: hidden
+	}
+
+</style>
+</head>
+
+<body>
+<div style="position:absolute;top:20px;width:100%;background:pink;text-align:center">
+  HW4 Car_Drive<br/><br/>
+	Space to stop<br/>
+	Left/Right to turn <br/>
+	Up/Down to accelerate/decelerate<br/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+<script src="https://jeffdsm6426.github.io/three.js/examples/js/loaders/OBJLoader.js"></script>
+<script src="https://jeffdsm6426.github.io/three.js/examples/js/loaders/MTLLoader.js"></script>
+<script src="https://yun100125.github.io/git/hw4/KeyboardState.js">
+</script>
+
+
+<script>
+	var clock = new THREE.Clock();
+var scene, renderer, camera, topCamera;
+var controls, keyboard = new KeyboardState();
+
+var toycar,ball1,ball2,cube;
+
+// state variable of toycar
+var pos = new THREE.Vector3(0,0,0);
+var angle = 0;
+var speed = 2;
+
+init();
+animate();
+
+function init() {
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  
+  renderer = new THREE.WebGLRenderer({antialias: true});
+  renderer.setClearColor(0xf7d9aa);
+	renderer.setSize (width, height);
+	document.body.appendChild (renderer.domElement);
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera (80, width/height, 1, 10000);
+	camera.lookAt (new THREE.Vector3(0,0,0));
+  
+  topCamera = new THREE.OrthographicCamera (-330,330,330,-330, 50, 2000);
+	topCamera.position.set (0,550,0);
+	topCamera.up.set (0,0,-1);
+	topCamera.lookAt (new THREE.Vector3(0,0,0));
+
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+///////////////////////////////////////////////
+  var mtlloader = new THREE.MTLLoader();
+  mtlloader.load('https://yun100125.github.io/git/hw4/toycar.mtl',
+    function(object) {
+      object.preload();
+      var objloader=new THREE.OBJLoader();
+      objloader.setMaterials(object);
+      objloader.load('https://yun100125.github.io/git/hw4/toycar.obj',function(aa){
+      	toycar=aa;
+      	scene.add(toycar);
+    		toycar.scale.set(.5, .5, .5);      
+      });
+      
+    });
+    
+  var geometry = new THREE.SphereGeometry(12, 12, 0);
+  ball1 = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+  ball1.position.set (50,6,50);
+  scene.add(ball1);
+  
+  var geometry = new THREE.SphereGeometry(20, 30, 0);
+  ball1 = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+  ball1.position.set (-100,15,-70);
+  scene.add(ball1);
+  
+
+   let gridXZ = new THREE.GridHelper(300, 20, 'red', 'white');
+  scene.add(gridXZ);
+
+  var pointLight = new THREE.PointLight(0xffffff);
+  pointLight.position.set(0, 300, 200);
+  scene.add(pointLight);
+
+  var ambientLight = new THREE.AmbientLight(0x111111);
+  scene.add(ambientLight);
+  
+  var cubeGeometry = new THREE.BoxGeometry (300,6,300);
+	var cubeMaterial = new THREE.MeshLambertMaterial ({color: 0x888888});
+	cube = new THREE.Mesh (cubeGeometry, cubeMaterial);
+	cube.position.set (0,-3,0);
+	scene.add (cube);
+  
+}
+
+//'https://jyunming-chen.github.io/tutsplus/models/toycar.obj', 
+function animate()
+{
+	var dt = clock.getDelta();
+	
+	var dir = new THREE.Vector3(1,0,0);
+	dir.multiplyScalar (dt*speed);	//dir *= dt*speed;
+	dir.applyAxisAngle (new THREE.Vector3(0,1,0), angle);
+	pos.add (dir); 	//pos = pos + dir;
+	
+	if (toycar != undefined) { 
+		toycar.scale.set (0.3,0.3,0.3);
+		toycar.position.set (pos.x, pos.y, pos.z);
+		toycar.rotation.y = (angle+Math.PI/2);
+
+		var relativeCameraOffset = new THREE.Vector3 (0,400,-400);
+
+		var cameraOffset = relativeCameraOffset.applyMatrix4( toycar.matrixWorld );
+	if (toycar.position.x > 130) {
+		speed = 0;
+	}
+  if (toycar.position.x < -130) {
+		speed = 0;
+	}
+  if (toycar.position.z > 130) {
+		speed = 0;
+	}
+  if (toycar.position.z < -130) {
+		speed = 0;
+	}
+
+		camera.position.x = cameraOffset.x;
+		camera.position.y = cameraOffset.y;
+		camera.position.z = cameraOffset.z;
+		camera.lookAt( toycar.position );
+	}
+	
+	requestAnimationFrame ( animate );  
+	update();
+	render();  
+}
+
+function myclamp(x,lo,hi)
+{
+	if (x < lo) return lo;
+	if (x > hi) return hi;
+	return x;
+}
+
+function update()
+{
+	keyboard.update();         
+	if ( keyboard.pressed('left') )   
+		angle += 0.01;               
+	if ( keyboard.pressed('right') )  
+		angle -= 0.01; 
+  if ( keyboard.pressed('space') )   
+		speed = 0; 
+	if ( keyboard.pressed('up') )  
+		speed += 0.5;        
+	if ( keyboard.pressed('down') )  
+		speed -= 0.5;  
+	speed = myclamp (speed, 0.0, 20.0);		
+  
+}
+
+function render()
+{
+	
+  var SCREEN_W, SCREEN_H, SCREEN_B;
+	SCREEN_W = window.innerWidth;
+	SCREEN_H = window.innerHeight;
+	SCREEN_B = window.innerBottom;
+
+	var left,bottom,width,height;
+left = 1; bottom = 1; width = SCREEN_W; height = SCREEN_H-2;
+	renderer.setViewport (left,bottom,width,height);
+	renderer.setScissor(left,130,width,height);
+	renderer.enableScissorTest (true);  // clip out "viewport"
+	camera.aspect = width/height;
+	camera.updateProjectionMatrix();
+	renderer.render (scene,camera);
+  
+  
+	left = -50; bottom = 200; width = 0.25*SCREEN_W; height = 0.4*SCREEN_H;
+	renderer.setViewport (left,bottom,width,height);
+	renderer.setScissor(left,bottom,width,height);
+	renderer.enableScissorTest (true);
+	topCamera.aspect = width/height;
+	topCamera.updateProjectionMatrix();
+	renderer.render (scene,topCamera);
+}
+
+
+</script>
+</body>
+
+</html>

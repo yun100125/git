@@ -12,7 +12,7 @@
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw1/hw1.html">
-		hw1.html</a></td>
+		hw1.html</a>
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw3/hw3.html">

@@ -16,9 +16,7 @@
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw3/hw3.html">
-		hw3.html</a></td>
-	</tr>
-</table>
+		hw3.html</a>
 <table border="1" width="100%">
 	<tr>
 		<td width="389">
@@ -28,8 +26,6 @@
 		<td width="389">
 		<p align="center">
 		<a href="http://yun100125.github.io/git/hw4/hw4.html">
-		hw4.html</a></td>
-	</tr>
-</table>
+		hw4.html</a>
 
 
